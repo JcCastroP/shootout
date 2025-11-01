@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shootout</title>
+    <style>
+        .ui {
+            position: relative;
+            width: 300px;
+            height: 350px;
+            background-image: url(.././imgs/campo.png);
+            background-size: 300px 350px;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 5%;
+            background-color: black;
+        }
+
+        button {
+            all: unset;
+            cursor: pointer;
+            display: inline-block;
+            width: 150px;
+            height: 50px;
+            background-image: url(.././imgs/botones.png);
+            background-repeat: no-repeat;
+            background-size: 150px 50px;
+            text-align: center;
+            margin-left: 80px;
+            z-index: 2;
+            position: absolute;
+            top: 300px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        .enemy {
+            position: absolute;
+            top: 15px;
+            left: 175px;
+        }
+
+        .hero {
+            position: absolute;
+            top: 116px;
+            z-index: 0;
+            background-position-y: bottom;
+        }
+
+        p {
+            color: white;
+            width: 300px;
+            height: 60px;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!--main logo/img-->
+    <img src=".././imgs/shootout.png">
+    <!--instrucciones-->
+    <p id="indicador">Observa el indicador:<br> rojo = espera, <br>verde = dispara.</p>
+    <!--main ui imagen de fondo completa sprites sobres fondo-->
+    <div id="ui" class="ui">
+        <!--enemigo-->
+        <img class="enemy" id="enemy" src=".././imgs/enemy.png" height="133" width="83">
+        <!--jugador-->
+        <img class="hero" id="hero" src=".././imgs/hero.png" height="184" width="166">
+        <button id="shoot" hidden>dispara</button>
+        <button id="go" hidden>empieza</button>
+    </div>
+
+    <!--main script-->
+    <script>
+        //the good stuff
+        const gameStart = new Audio(`.././sounds/gameStart.mp3`);
+        const pistolShoot = new Audio(`.././sounds/pistolShoot.m4a`);
+        const duelOver = new Audio(`.././sounds/duelOver.mp3`);
+
+        let shoot = document.getElementById("shoot");
+        let go = document.getElementById("go");
+        let indicador = document.getElementById("indicador");
+        let enemy = document.getElementById("enemy");
+        let hero = document.getElementById("hero");
+
+        let canShoot = false;
+        let reacted = false;
+        let preShootTimer = null;
+        let shootWindowTimer = null;
+
+        go.hidden = false;
+        pistolShoot.preload = 'auto';
+        gameStart.preload = 'auto';
+        duelOver.preload = 'auto';
+
+        go.addEventListener("click", function () {
+            gameStart.currentTime = 0;
+            gameStart.volume = 0.6;
+            gameStart.play();
+            go.hidden = true;
+            shoot.hidden = false;
+            indicador.textContent = "¡La paciencia vence al más impaciente!";
+            indicador.style.backgroundColor = "red";
+
+            let delay = Math.floor(Math.random() * 10000) + 2000;
+
+            preShootTimer = setTimeout(function () {
+                canShoot = true;
+                indicador.textContent = "¡Haz que cuente, vaquero!";
+                indicador.style.backgroundColor = "green";
+
+                shootWindowTimer = setTimeout(function () {
+                    if (!reacted) tooSlow();
+                }, 500);
+            }, delay);
+        });
+
+        shoot.addEventListener("click", function () {
+            shoot.hidden = true;
+            reacted = true;
+
+            if (!canShoot) {
+                clearTimeout(preShootTimer);
+                indicador.textContent = "¡Demasiado pronto, vaquero!";
+
+                pistolShoot.currentTime = 0;
+                pistolShoot.volume = 0.1;
+                pistolShoot.play();
+                
+                hero.src = ".././imgs/heroD.png";
+                indicador.style.backgroundColor = "gray";
+                setTimeout(function () {
+                    location.reload();
+                }, 6000);
+                return;
+            }
+
+            clearTimeout(shootWindowTimer);
+            indicador.textContent = "¡Eres el más rápido del oeste!";
+
+            pistolShoot.currentTime = 0;
+            pistolShoot.volume = 0.1;
+            pistolShoot.play();
+            duelOver.currentTime = 0;
+            duelOver.volume = 0.1;
+            duelOver.play();
+
+            enemy.src = ".././imgs/enemyD.png";
+            indicador.style.backgroundColor = "gray";
+            setTimeout(function () {
+                location.reload();
+            }, 6000);
+        });
+
+        function tooSlow() {
+            shoot.hidden = true;
+            indicador.textContent = "¡Tú eras rápido… pero no suficiente!";
+
+            pistolShoot.currentTime = 0;
+            pistolShoot.volume = 0.1;
+            pistolShoot.play();
+            duelOver.currentTime = 0;
+            duelOver.volume = 0.1;
+            duelOver.play();
+
+            hero.src = ".././imgs/heroD.png";
+            indicador.style.backgroundColor = "gray";
+            setTimeout(function () {
+                location.reload();
+            }, 6000);
+        }
+    </script>
+</body>
+
+</html>
