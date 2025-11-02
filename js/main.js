@@ -1,7 +1,7 @@
-const gameStart = new Audio(`.././sounds/gameStart.mp3`);
-const pistolShoot = new Audio(`.././sounds/pistolShoot.m4a`);
-const duelOver = new Audio(`.././sounds/duelOver.mp3`);
-const gameStartFinal = new Audio(`.././sounds/gameStartFinal.mp3`);
+const gameStart = new Audio(`../sounds/gameStart.mp3`);
+const pistolShoot = new Audio(`../sounds/pistolShoot.m4a`);
+const duelOver = new Audio(`../sounds/duelOver.mp3`);
+const gameStartFinal = new Audio(`../sounds/gameStartFinal.mp3`);
 
 let shoot = document.getElementById("shoot");
 let go = document.getElementById("go");
@@ -60,8 +60,8 @@ function handleShootClick() {
     indicador.textContent = "¡Eres el más rápido del oeste!";
     pistolShootSound();
     duelOverSound();
-    enemy.src = ".././imgs/enemyD.png";
-    hero.src = ".././imgs/heroS.png"
+    enemy.src = "../imgs/enemyD.png";
+    hero.src = "../imgs/heroS.png"
     indicador.style.backgroundColor = "gray";
 
     if (stage < 3) {
@@ -95,7 +95,7 @@ function startStage(windowTime) {
     preShootTimer = setTimeout(() => {
         canShoot = true;
         indicador.textContent = "¡Haz que cuente, vaquero!";
-        enemy.src = ".././imgs/enemyS.png";
+        enemy.src = "../imgs/enemyS.png";
         indicador.style.backgroundColor = "green";
 
         shootWindowTimer = setTimeout(() => {
@@ -110,8 +110,8 @@ function tooSoon() {
 
     pistolShootSound();
 
-    hero.src = ".././imgs/heroE.png";
-    enemy.src = ".././imgs/enemyS.png"
+    hero.src = "../imgs/heroE.png";
+    enemy.src = "../imgs/enemyS.png"
 
     indicador.style.backgroundColor = "gray";
     gameOver = true;
@@ -124,8 +124,8 @@ function tooSlow() {
 
     pistolShootSound();
 
-    enemy.src = ".././imgs/enemyS.png"
-    hero.src = ".././imgs/heroD.png";
+    enemy.src = "../imgs/enemyS.png"
+    hero.src = "../imgs/heroD.png";
 
     indicador.style.backgroundColor = "gray";
     gameOver = true;
@@ -172,4 +172,5 @@ function updateUI() {
 
 function handleRestartClick() {
     location.reload();
+
 }
