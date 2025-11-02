@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shootout</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <!--main logo/img-->
+    <img src="./imgs/shootout.png">
+    <!--instrucciones-->
+    <p id="indicador">Observa el indicador:<br> rojo = espera, <br>verde = dispara.</p>
+    <!--main ui imagen de fondo completa sprites sobres fondo-->
+    <div id="ui" class="ui">
+        <!--enemigo-->
+        <img class="enemy" id="enemy" src="./imgs/enemy.png" height="133" width="83">
+        <!--jugador-->
+        <img class="hero" id="hero" src="./imgs/hero.png" height="184" width="286">
+        <button id="shoot" hidden>dispara</button>
+        <button id="go" hidden>empieza</button>
+        <button id="restart" hidden>volver</button>
+    </div>
+    <h3 id="nivel">Nivel 1</h3>
+
+    <!--main script-->
+    <script src="./js/main.js"></script>
+
+</body>
+
+</html>

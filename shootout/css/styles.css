@@ -1,0 +1,68 @@
+.ui {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    background-image: url(.././imgs/campo.png);
+    background-size: 300px 350px;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    background-image: url(.././imgs/botones.png);
+    background-repeat: no-repeat;
+    background-size: 150px 50px;
+    text-align: center;
+    margin-left: 80px;
+    z-index: 2;
+    position: absolute;
+    top: 300px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.enemy {
+    position: absolute;
+    top: 15px;
+    left: 175px;
+}
+
+.hero {
+    position: absolute;
+    top: 116px;
+    z-index: 0;
+    background-position-y: bottom;
+}
+
+p {
+    color: white;
+    width: 300px;
+    height: 60px;
+    text-align: center;
+}
+
+h3 {
+    color: white;
+    text-align: center;
+    width: 300px;
+    height: 60px;
+}
