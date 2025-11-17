@@ -2,6 +2,7 @@
     position: relative;
     width: 300px;
     height: 350px;
+    min-height: 350px;
     background-image: url(../imgs/campo.png);
     background-size: 300px 350px;
     background-position: center;
@@ -15,8 +16,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 5%;
     background-color: black;
+    height: 90vh;
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -57,7 +58,16 @@ p {
     color: white;
     width: 300px;
     height: 60px;
-    text-align: center;
+}
+
+#indicador {
+    color: white;
+    width: 300px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    text-align: center; 
 }
 
 h3 {
