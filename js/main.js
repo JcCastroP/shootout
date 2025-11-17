@@ -66,7 +66,7 @@ function handleShootClick() {
     let reactionTime = Math.round(endTime - startTime);
 
     if (stage === 3){
-        indicador.innerHTML = `¡Tu nombre sera leyenda! <br> Tiempo de reacción: ${reactionTime} ms`;
+        indicador.innerHTML = `¡Tu nombre será leyenda! <br> Tiempo de reacción: ${reactionTime} ms`;
     } else {
         indicador.innerHTML = `¡Eres el más rápido del oeste! <br> Tiempo de reacción: ${reactionTime} ms`;
     }
