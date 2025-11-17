@@ -46,7 +46,7 @@ function handleGoClick() {
             startStage(400);
             break;
         case 3:
-            startStage(280);
+            startStage(270);
             break;
     }
 }
